@@ -29,6 +29,7 @@ Raspberry Pi
  
  - RetroPie/Kodi
  - RPi GPIO
+ - RPi <-> Camera / OpenWRT
  - RPi with Arduino
  - Node.js Server / ESP8266 <-> Express example
  - MQTT Server
