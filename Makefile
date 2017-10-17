@@ -1,6 +1,6 @@
 include_dir=build
 source=chapters/*.md
-title='30 天 30 个物联网项目'
+title='写给软件工程师的硬件编程指南'
 filename='30-iot'
 
 
