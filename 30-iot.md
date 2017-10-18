@@ -176,7 +176,7 @@ ESP8266 MQTT 控制
 ESP8266 HTTP 服务器
 ===
 
-超载 ESP8266
+超越 ESP8266
 ===
 
 第三部分 Raspberry Pi
@@ -189,3 +189,62 @@ ESP8266 HTTP 服务器
  - Raspberry Pi <-> ESP8266 / Node.js Example
  - MQTT Server
  - IoT Server + Database?
+
+Raspberry Pi Hello, world!
+===
+
+### 镜像烧录
+
+### SSH 连接
+
+### Python 控制  GPIO
+
+Node.js 服务基础
+===
+
+### 安装 Node.js
+
+### Express Hello, world
+
+### 开机启动
+
+摄像头 + 传感器 = 智能家居？
+===
+
+
+### 红外传感器
+
+### 视频流
+
+### 拍照，blabla
+
+与 ESP8266 无线通讯
+===
+
+### 建立服务
+
+### 广播？
+
+Arduino OTA 更新
+===
+
+### 服务端读取代码
+
+### arduino-cli 更新硬件
+
+
+使用 MQTT 服务器
+===
+
+### MQTT 客户端
+
+### 使用 mosquittto
+
+跟上潮流：Docker、硬件微服务
+===
+
+### 使用 Docker
+
+### 硬件微服务
+
+
