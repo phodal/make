@@ -1,6 +1,4 @@
-# 30-days-of-iot
-
-> 30 days of IoT.
+# 写给软件工程师的硬件编程指南
 
 TODO
 
