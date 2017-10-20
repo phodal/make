@@ -37,16 +37,29 @@
 <li><a href="#arduino-hello-world">Arduino Hello, World</a></li>
 <li><a href="#arduino-传感器控制">Arduino 传感器控制</a></li>
 <li><a href="#arduino-5100-显示">Arduino 5100 显示</a></li>
-<li><a href="#arduino-processing">Arduino Processing</a></li>
+<li><a href="#arduino-processing">Arduino Processing</a><ul>
+<li><a href="#串口">串口</a></li>
+</ul></li>
 <li><a href="#arduino-ble-控制">Arduino BLE 控制</a></li>
+<li><a href="#arduino-game">Arduino Game ??</a></li>
 <li><a href="#arduino-esp8266-wifi">Arduino ESP8266 WiFi</a></li>
 <li><a href="#第二部分-esp8266">第二部分 ESP8266</a></li>
 <li><a href="#esp8266-基础">ESP8266 基础</a></li>
 <li><a href="#esp8266-arduino-ide-展示">ESP8266 Arduino IDE 展示</a></li>
 <li><a href="#esp8266-连接-arduino-uno">ESP8266 连接 Arduino UNO</a></li>
-<li><a href="#esp8266-上传传感器数据">ESP8266 上传传感器数据</a></li>
-<li><a href="#esp8266-mqtt-控制">ESP8266 MQTT 控制</a></li>
-<li><a href="#esp8266-http-服务器">ESP8266 HTTP 服务器</a></li>
+<li><a href="#esp8266-上传传感器数据">ESP8266 上传传感器数据</a><ul>
+<li><a href="#adc-数据">ADC 数据</a></li>
+<li><a href="#发送请求">发送请求</a></li>
+<li><a href="#上传">上传</a></li>
+</ul></li>
+<li><a href="#esp8266-mqtt-控制">ESP8266 MQTT 控制</a><ul>
+<li><a href="#mqtt">MQTT</a></li>
+<li><a href="#moquitto">moquitto</a></li>
+<li><a href="#section"></a></li>
+</ul></li>
+<li><a href="#esp8266-http-服务器">ESP8266 HTTP 服务器</a><ul>
+<li><a href="#simple-http-server">Simple HTTP Server</a></li>
+</ul></li>
 <li><a href="#超越-esp8266">超越 ESP8266</a></li>
 <li><a href="#第三部分-raspberry-pi">第三部分 Raspberry Pi</a></li>
 <li><a href="#raspberry-pi-hello-world">Raspberry Pi Hello, world!</a><ul>
@@ -80,6 +93,13 @@
 <li><a href="#使用-docker">使用 Docker</a></li>
 <li><a href="#硬件微服务">硬件微服务</a></li>
 </ul></li>
+<li><a href="#home-assistant-搭建">Home Assistant 搭建</a></li>
+<li><a href="#home-assistant-整合">Home Assistant 整合</a></li>
+<li><a href="#homekit-搭建">Homekit 搭建</a></li>
+<li><a href="#homekit-整合">Homekit 整合</a></li>
+<li><a href="#raspberry-pi-与智能音箱">Raspberry Pi 与智能音箱</a></li>
+<li><a href="#raspberry-pi-自制智能音箱">Raspberry Pi 自制智能音箱</a></li>
+<li><a href="#超越-raspberry-pi">超越 Raspberry Pi</a></li>
 </ul>
 </nav>
 <h1 id="前言">前言</h1>
@@ -155,7 +175,9 @@
 <h1 id="arduino-传感器控制">Arduino 传感器控制</h1>
 <h1 id="arduino-5100-显示">Arduino 5100 显示</h1>
 <h1 id="arduino-processing">Arduino Processing</h1>
+<h3 id="串口">串口</h3>
 <h1 id="arduino-ble-控制">Arduino BLE 控制</h1>
+<h1 id="arduino-game">Arduino Game ??</h1>
 <h1 id="arduino-esp8266-wifi">Arduino ESP8266 WiFi</h1>
 <h1 id="第二部分-esp8266">第二部分 ESP8266</h1>
 <ul>
@@ -172,8 +194,123 @@
 <h1 id="esp8266-arduino-ide-展示">ESP8266 Arduino IDE 展示</h1>
 <h1 id="esp8266-连接-arduino-uno">ESP8266 连接 Arduino UNO</h1>
 <h1 id="esp8266-上传传感器数据">ESP8266 上传传感器数据</h1>
+<h3 id="adc-数据">ADC 数据</h3>
+<h3 id="发送请求">发送请求</h3>
+<pre><code>/**
+ * BasicHTTPClient.ino
+ *
+ *  Created on: 24.05.2015
+ *
+ */
+
+#include &lt;Arduino.h&gt;
+
+#include &lt;ESP8266WiFi.h&gt;
+#include &lt;ESP8266WiFiMulti.h&gt;
+
+#include &lt;ESP8266HTTPClient.h&gt;
+
+#define USE_SERIAL Serial
+
+ESP8266WiFiMulti WiFiMulti;
+
+void setup() {
+
+    USE_SERIAL.begin(115200);
+   // USE_SERIAL.setDebugOutput(true);
+
+    USE_SERIAL.println();
+    USE_SERIAL.println();
+    USE_SERIAL.println();
+
+    for(uint8_t t = 4; t &gt; 0; t--) {
+        USE_SERIAL.printf(&quot;[SETUP] WAIT %d...\n&quot;, t);
+        USE_SERIAL.flush();
+        delay(1000);
+    }
+
+    WiFiMulti.addAP(&quot;SSID&quot;, &quot;PASSWORD&quot;);
+
+}
+
+void loop() {
+    // wait for WiFi connection
+    if((WiFiMulti.run() == WL_CONNECTED)) {
+
+        HTTPClient http;
+
+        USE_SERIAL.print(&quot;[HTTP] begin...\n&quot;);
+        // configure traged server and url
+        //http.begin(&quot;https://192.168.1.12/test.html&quot;, &quot;7a 9c f4 db 40 d3 62 5a 6e 21 bc 5c cc 66 c8 3e a1 45 59 38&quot;); //HTTPS
+        http.begin(&quot;http://192.168.1.12/test.html&quot;); //HTTP
+
+        USE_SERIAL.print(&quot;[HTTP] GET...\n&quot;);
+        // start connection and send HTTP header
+        int httpCode = http.GET();
+
+        // httpCode will be negative on error
+        if(httpCode &gt; 0) {
+            // HTTP header has been send and Server response header has been handled
+            USE_SERIAL.printf(&quot;[HTTP] GET... code: %d\n&quot;, httpCode);
+
+            // file found at server
+            if(httpCode == HTTP_CODE_OK) {
+                String payload = http.getString();
+                USE_SERIAL.println(payload);
+            }
+        } else {
+            USE_SERIAL.printf(&quot;[HTTP] GET... failed, error: %s\n&quot;, http.errorToString(httpCode).c_str());
+        }
+
+        http.end();
+    }
+
+    delay(10000);
+}</code></pre>
+<h3 id="上传">上传</h3>
 <h1 id="esp8266-mqtt-控制">ESP8266 MQTT 控制</h1>
+<h3 id="mqtt">MQTT</h3>
+<h3 id="moquitto">moquitto</h3>
+<h3 id="section"></h3>
+<p><a href="https://github.com/tuanpmt/esp_mqtt" class="uri">https://github.com/tuanpmt/esp_mqtt</a></p>
 <h1 id="esp8266-http-服务器">ESP8266 HTTP 服务器</h1>
+<h3 id="simple-http-server">Simple HTTP Server</h3>
+<pre><code>#include &lt;ESP8266WiFi.h&gt;
+#include &lt;ESP8266WebServer.h&gt;
+ 
+ESP8266WebServer server(80);
+ 
+void setup() {
+ 
+  Serial.begin(115200);
+  WiFi.begin(&quot;Network name&quot;, &quot;Password&quot;);  //Connect to the WiFi network
+ 
+  while (WiFi.status() != WL_CONNECTED) {  //Wait for connection
+    delay(500);
+    Serial.println(&quot;Waiting to connect…&quot;);
+  }
+ 
+  Serial.print(&quot;IP address: &quot;);
+  Serial.println(WiFi.localIP());  //Print the local IP
+ 
+  server.on(&quot; / other&quot;, []() {   //Define the handling function for the path
+ 
+    server.send(200, &quot;text / plain&quot;, &quot;Other URL&quot;);
+ 
+  });
+ 
+  server.on(&quot; / &quot;, handleRootPath);    //Associate the handler function to the path
+  server.begin();                                       //Start the server
+  Serial.println(&quot;Server listening&quot;);
+}
+ 
+void loop() {
+  server.handleClient();
+}
+ 
+void handleRootPath() {
+  server.send(200, &quot;text/plain&quot;, &quot;Hello world&quot;); 
+}</code></pre>
 <h1 id="超越-esp8266">超越 ESP8266</h1>
 <h1 id="第三部分-raspberry-pi">第三部分 Raspberry Pi</h1>
 <ul>
@@ -209,6 +346,13 @@
 <h1 id="跟上潮流docker硬件微服务">跟上潮流：Docker、硬件微服务</h1>
 <h3 id="使用-docker">使用 Docker</h3>
 <h3 id="硬件微服务">硬件微服务</h3>
+<h1 id="home-assistant-搭建">Home Assistant 搭建</h1>
+<h1 id="home-assistant-整合">Home Assistant 整合</h1>
+<h1 id="homekit-搭建">Homekit 搭建</h1>
+<h1 id="homekit-整合">Homekit 整合</h1>
+<h1 id="raspberry-pi-与智能音箱">Raspberry Pi 与智能音箱</h1>
+<h1 id="raspberry-pi-自制智能音箱">Raspberry Pi 自制智能音箱</h1>
+<h1 id="超越-raspberry-pi">超越 Raspberry Pi</h1>
 <section class="footnotes">
 <hr />
 <ol>

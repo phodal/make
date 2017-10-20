@@ -136,7 +136,13 @@ Arduino 5100 显示
 Arduino Processing
 ===
 
+### 串口
+
 Arduino BLE 控制
+===
+
+
+Arduino Game ??
 ===
 
 
@@ -170,11 +176,144 @@ ESP8266 连接 Arduino UNO
 ESP8266 上传传感器数据
 ===
 
+### ADC 数据
+
+### 发送请求
+
+```
+/**
+ * BasicHTTPClient.ino
+ *
+ *  Created on: 24.05.2015
+ *
+ */
+
+#include <Arduino.h>
+
+#include <ESP8266WiFi.h>
+#include <ESP8266WiFiMulti.h>
+
+#include <ESP8266HTTPClient.h>
+
+#define USE_SERIAL Serial
+
+ESP8266WiFiMulti WiFiMulti;
+
+void setup() {
+
+    USE_SERIAL.begin(115200);
+   // USE_SERIAL.setDebugOutput(true);
+
+    USE_SERIAL.println();
+    USE_SERIAL.println();
+    USE_SERIAL.println();
+
+    for(uint8_t t = 4; t > 0; t--) {
+        USE_SERIAL.printf("[SETUP] WAIT %d...\n", t);
+        USE_SERIAL.flush();
+        delay(1000);
+    }
+
+    WiFiMulti.addAP("SSID", "PASSWORD");
+
+}
+
+void loop() {
+    // wait for WiFi connection
+    if((WiFiMulti.run() == WL_CONNECTED)) {
+
+        HTTPClient http;
+
+        USE_SERIAL.print("[HTTP] begin...\n");
+        // configure traged server and url
+        //http.begin("https://192.168.1.12/test.html", "7a 9c f4 db 40 d3 62 5a 6e 21 bc 5c cc 66 c8 3e a1 45 59 38"); //HTTPS
+        http.begin("http://192.168.1.12/test.html"); //HTTP
+
+        USE_SERIAL.print("[HTTP] GET...\n");
+        // start connection and send HTTP header
+        int httpCode = http.GET();
+
+        // httpCode will be negative on error
+        if(httpCode > 0) {
+            // HTTP header has been send and Server response header has been handled
+            USE_SERIAL.printf("[HTTP] GET... code: %d\n", httpCode);
+
+            // file found at server
+            if(httpCode == HTTP_CODE_OK) {
+                String payload = http.getString();
+                USE_SERIAL.println(payload);
+            }
+        } else {
+            USE_SERIAL.printf("[HTTP] GET... failed, error: %s\n", http.errorToString(httpCode).c_str());
+        }
+
+        http.end();
+    }
+
+    delay(10000);
+}
+```
+
+### 上传
+
 ESP8266 MQTT 控制
 ===
 
+### MQTT
+
+### moquitto
+
+### 
+
+[https://github.com/tuanpmt/esp_mqtt](https://github.com/tuanpmt/esp_mqtt)
+
+
 ESP8266 HTTP 服务器
 ===
+
+
+### Simple HTTP Server
+
+
+```
+#include <ESP8266WiFi.h>
+#include <ESP8266WebServer.h>
+ 
+ESP8266WebServer server(80);
+ 
+void setup() {
+ 
+  Serial.begin(115200);
+  WiFi.begin("Network name", "Password");  //Connect to the WiFi network
+ 
+  while (WiFi.status() != WL_CONNECTED) {  //Wait for connection
+    delay(500);
+    Serial.println("Waiting to connect…");
+  }
+ 
+  Serial.print("IP address: ");
+  Serial.println(WiFi.localIP());  //Print the local IP
+ 
+  server.on(" / other", []() {   //Define the handling function for the path
+ 
+    server.send(200, "text / plain", "Other URL");
+ 
+  });
+ 
+  server.on(" / ", handleRootPath);    //Associate the handler function to the path
+  server.begin();                                       //Start the server
+  Serial.println("Server listening");
+}
+ 
+void loop() {
+  server.handleClient();
+}
+ 
+void handleRootPath() {
+  server.send(200, "text/plain", "Hello world"); 
+}
+```
+
 
 超越 ESP8266
 ===
@@ -247,4 +386,26 @@ Arduino OTA 更新
 
 ### 硬件微服务
 
+
+
+Home Assistant 搭建
+===
+
+Home Assistant 整合
+===
+
+Homekit 搭建
+===
+
+Homekit 整合
+===
+
+Raspberry Pi 与智能音箱
+===
+
+Raspberry Pi 自制智能音箱
+===
+
+超越 Raspberry Pi
+===
 
