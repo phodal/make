@@ -6,6 +6,25 @@ hello, world
 
 与桌面端使用 print、puts、console.log 来输出 Hello, world 不同的是，点亮一个 LED 是 电子世界的 Hello, world。
 
+
+### setup()
+
+源码中的：
+
+```
+int main(void)
+{
+    init();
+    setup();
+    for(;;)
+        loop();
+
+    return 0;
+}
+```
+
+### loop()
+
 输入控制输出
 ---
 

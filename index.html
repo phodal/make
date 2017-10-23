@@ -35,18 +35,25 @@
 </ul></li>
 <li><a href="#第一部分-arduino-篇">第一部分 Arduino 篇</a></li>
 <li><a href="#arduino-hello-world">Arduino Hello, World</a><ul>
-<li><a href="#hello-world">hello, world</a></li>
+<li><a href="#hello-world">hello, world</a><ul>
+<li><a href="#setup">setup()</a></li>
+<li><a href="#loop">loop()</a></li>
+</ul></li>
 <li><a href="#输入控制输出">输入控制输出</a><ul>
 <li><a href="#电路图">电路图</a></li>
 </ul></li>
 </ul></li>
 <li><a href="#arduino-传感器控制">Arduino 传感器控制</a><ul>
 <li><a href="#传感器入门">传感器入门</a></li>
-<li><a href="#模拟数字">模拟数字</a></li>
+<li><a href="#模拟元件与数字元件">模拟元件与数字元件</a></li>
 </ul></li>
-<li><a href="#arduino-5100-显示">Arduino 5100 显示</a></li>
+<li><a href="#arduino-5100-显示">Arduino 5100 显示</a><ul>
+<li><a href="#lcd">LCD</a></li>
+<li><a href="#安装库">安装库</a></li>
+<li><a href="#输出-hello-world">输出 hello, world</a></li>
+</ul></li>
 <li><a href="#arduino-processing">Arduino Processing</a><ul>
-<li><a href="#串口">串口</a></li>
+<li><a href="#串口输出">串口输出</a></li>
 </ul></li>
 <li><a href="#arduino-ble-控制">Arduino BLE 控制</a></li>
 <li><a href="#arduino-game">Arduino Game ??</a></li>
@@ -182,6 +189,18 @@
 <h1 id="arduino-hello-world">Arduino Hello, World</h1>
 <h2 id="hello-world">hello, world</h2>
 <p>与桌面端使用 print、puts、console.log 来输出 Hello, world 不同的是，点亮一个 LED 是 电子世界的 Hello, world。</p>
+<h3 id="setup">setup()</h3>
+<p>源码中的：</p>
+<pre><code>int main(void)
+{
+    init();
+    setup();
+    for(;;)
+        loop();
+
+    return 0;
+}</code></pre>
+<h3 id="loop">loop()</h3>
 <h2 id="输入控制输出">输入控制输出</h2>
 <p>GOAL</p>
 <p>SMART 原则</p>
@@ -196,10 +215,13 @@
 </figure>
 <h1 id="arduino-传感器控制">Arduino 传感器控制</h1>
 <h2 id="传感器入门">传感器入门</h2>
-<h2 id="模拟数字">模拟数字</h2>
+<h2 id="模拟元件与数字元件">模拟元件与数字元件</h2>
 <h1 id="arduino-5100-显示">Arduino 5100 显示</h1>
+<h2 id="lcd">LCD</h2>
+<h2 id="安装库">安装库</h2>
+<h2 id="输出-hello-world">输出 hello, world</h2>
 <h1 id="arduino-processing">Arduino Processing</h1>
-<h3 id="串口">串口</h3>
+<h2 id="串口输出">串口输出</h2>
 <h1 id="arduino-ble-控制">Arduino BLE 控制</h1>
 <h1 id="arduino-game">Arduino Game ??</h1>
 <h1 id="arduino-esp8266-wifi">Arduino ESP8266 WiFi</h1>
