@@ -4,13 +4,13 @@ Arduino Hello, World
 开发板选择
 ---
 
-![Arduino 开发板示例](arduinos.jpg)
+![Arduino 开发板示例](./images/arduino/arduinos.jpg)
 
-![扩展板](shields.jpg)
+![扩展板](./images/arduino/shields.jpg)
 
 Arduino IDE 默认会安装相应环境的包，如果你的开发板不在这些环境里，如你使用的是 Arduino M0 开发板。那么，系统可能会检测出来，并自动为你安装相应的环境，如下图所示。
 
-![](arduino-install-package.png)
+![](./images/arduino/arduino-install-package.png)
 
 对于非官方的开发板来说，则需要开发者自己手动通过『开发板管理器』来安装。
 
@@ -23,7 +23,7 @@ hello, world
 
 官方的 Blink 示例如下：
 
-```
+```c
 void setup() {
   // initialize digital pin LED_BUILTIN as an output.
   pinMode(LED_BUILTIN, OUTPUT);
@@ -43,7 +43,7 @@ void loop() {
 
 源码中的：
 
-```
+```c
 int main(void)
 {
     init();
