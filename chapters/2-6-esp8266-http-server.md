@@ -5,7 +5,7 @@ ESP8266 HTTP 服务器
 ### Simple HTTP Server
 
 
-```
+```c
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
  

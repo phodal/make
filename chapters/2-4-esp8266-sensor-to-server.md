@@ -5,7 +5,7 @@ ESP8266 上传传感器数据
 
 ### 发送请求
 
-```
+```c
 /**
  * BasicHTTPClient.ino
  *

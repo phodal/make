@@ -61,11 +61,13 @@ h1 a {
 h2 {
     font-size: 24px;
     margin-bottom: 28px;
+    margin-left: 12px;
 }
 
 h3 {
     font-size: 18px;
     margin-bottom: 24px;
+    margin-left: 16px;
 }
 
 h4 {
@@ -135,7 +137,7 @@ pre {
 }
 
 pre code {
-    background-color: #fff;
+    background-color: transparent;
     color: #737373;
     font-size: 11px;
     padding: 0;
@@ -459,26 +461,6 @@ h1, h2, h3, h4, h5, h6,
   line-height: 1.35;
 }
 
-h1, .typo-h1 {
-  font-size: 2em;
-}
-
-h2, .typo-h2 {
-  font-size: 1.8em;
-}
-
-h3, .typo-h3 {
-  font-size: 1.6em;
-}
-
-h4, .typo-h4 {
-  font-size: 1.4em;
-}
-
-h5, h6, .typo-h5, .typo-h6 {
-  font-size: 1.2em;
-}
-
 /* 在文章中，应该还原 ul 和 ol 的样式 */
 ul, .typo-ul {
   margin-left: 1.3em;
@@ -492,7 +474,7 @@ ol, .typo-ol {
 
 li ul, li ol, .typo-ul ul, .typo-ul ol, .typo-ol ul, .typo-ol ol {
   margin-bottom: 0.8em;
-  margin-left: 2em;
+  margin-left: 0.6em;
 }
 
 li ul, .typo-ul ul, .typo-ol ul {

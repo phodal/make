@@ -104,8 +104,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 </ul></li>
 <li><a href="#arduino-传感器控制">Arduino 传感器控制</a><ul>
-<li><a href="#传感器入门">传感器入门</a></li>
+<li><a href="#传感器入门">传感器入门</a><ul>
 <li><a href="#模拟元件与数字元件">模拟元件与数字元件</a></li>
+</ul></li>
+<li><a href="#超声波传感器">超声波传感器</a></li>
+<li><a href="#控制继电器">控制继电器</a></li>
 </ul></li>
 <li><a href="#arduino-5100-显示">Arduino 5100 显示</a><ul>
 <li><a href="#lcd">LCD</a></li>
@@ -114,12 +117,25 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li><a href="#arduino-processing">Arduino Processing</a><ul>
 <li><a href="#串口输出">串口输出</a></li>
+<li><a href="#复杂的例子mpu-6050">复杂的例子：MPU 6050</a></li>
 </ul></li>
-<li><a href="#arduino-ble-控制">Arduino BLE 控制</a></li>
-<li><a href="#arduino-game">Arduino Game ??</a></li>
-<li><a href="#arduino-esp8266-wifi">Arduino ESP8266 WiFi</a></li>
+<li><a href="#arduino-ble-控制">Arduino BLE 控制</a><ul>
+<li><a href="#蓝牙串口">蓝牙串口</a></li>
+<li><a href="#与手机通讯">与手机通讯</a></li>
+</ul></li>
+<li><a href="#arduino-扩展板使用">Arduino 扩展板使用</a><ul>
+<li><a href="#继电器">继电器</a></li>
+<li><a href="#网络">网络</a></li>
+</ul></li>
+<li><a href="#arduino-esp8266-wifi">Arduino ESP8266 WiFi</a><ul>
+<li><a href="#esp8266-设置">ESP8266 设置</a></li>
+<li><a href="#arduino-wifi">Arduino WiFi</a></li>
+</ul></li>
 <li><a href="#第二部分-esp8266">第二部分 ESP8266</a></li>
-<li><a href="#esp8266-基础">ESP8266 基础</a></li>
+<li><a href="#esp8266-基础">ESP8266 基础</a><ul>
+<li><a href="#设置与-at-指令">设置与 AT 指令</a></li>
+<li><a href="#nodemcu">NodeMCU</a></li>
+</ul></li>
 <li><a href="#esp8266-arduino-ide-展示">ESP8266 Arduino IDE 展示</a></li>
 <li><a href="#esp8266-连接-arduino-uno">ESP8266 连接 Arduino UNO</a></li>
 <li><a href="#esp8266-上传传感器数据">ESP8266 上传传感器数据</a><ul>
@@ -349,16 +365,28 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </figure>
 <h1 id="arduino-传感器控制">Arduino 传感器控制</h1>
 <h2 id="传感器入门">传感器入门</h2>
-<h2 id="模拟元件与数字元件">模拟元件与数字元件</h2>
+<h3 id="模拟元件与数字元件">模拟元件与数字元件</h3>
+<h2 id="超声波传感器">超声波传感器</h2>
+<h2 id="控制继电器">控制继电器</h2>
 <h1 id="arduino-5100-显示">Arduino 5100 显示</h1>
 <h2 id="lcd">LCD</h2>
 <h2 id="安装库">安装库</h2>
 <h2 id="输出-hello-world">输出 hello, world</h2>
 <h1 id="arduino-processing">Arduino Processing</h1>
 <h2 id="串口输出">串口输出</h2>
+<h2 id="复杂的例子mpu-6050">复杂的例子：MPU 6050</h2>
 <h1 id="arduino-ble-控制">Arduino BLE 控制</h1>
-<h1 id="arduino-game">Arduino Game ??</h1>
+<h2 id="蓝牙串口">蓝牙串口</h2>
+<p>Bluno 等自带蓝牙的开发板</p>
+<h2 id="与手机通讯">与手机通讯</h2>
+<p>React Native / Cordova ???</p>
+<h1 id="arduino-扩展板使用">Arduino 扩展板使用</h1>
+<p>I don’t know</p>
+<h2 id="继电器">继电器</h2>
+<h2 id="网络">网络</h2>
 <h1 id="arduino-esp8266-wifi">Arduino ESP8266 WiFi</h1>
+<h2 id="esp8266-设置">ESP8266 设置</h2>
+<h2 id="arduino-wifi">Arduino WiFi</h2>
 <h1 id="第二部分-esp8266">第二部分 ESP8266</h1>
 <ul>
 <li>ESP8266 基础 + 连接 WiFi / NodeMCU</li>
@@ -370,83 +398,84 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>更多的可能性探索：Mongoose OS、Johnny-Five、智能家居</li>
 </ul>
 <h1 id="esp8266-基础">ESP8266 基础</h1>
-<p>连接 WiFi</p>
+<h2 id="设置与-at-指令">设置与 AT 指令</h2>
+<h2 id="nodemcu">NodeMCU</h2>
 <h1 id="esp8266-arduino-ide-展示">ESP8266 Arduino IDE 展示</h1>
 <h1 id="esp8266-连接-arduino-uno">ESP8266 连接 Arduino UNO</h1>
 <h1 id="esp8266-上传传感器数据">ESP8266 上传传感器数据</h1>
 <h3 id="adc-数据">ADC 数据</h3>
 <h3 id="发送请求">发送请求</h3>
-<pre><code>/**
- * BasicHTTPClient.ino
- *
- *  Created on: 24.05.2015
- *
- */
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="co">/**</span>
+<span class="co"> * BasicHTTPClient.ino</span>
+<span class="co"> *</span>
+<span class="co"> *  Created on: 24.05.2015</span>
+<span class="co"> *</span>
+<span class="co"> */</span>
 
-#include &lt;Arduino.h&gt;
+<span class="ot">#include &lt;Arduino.h&gt;</span>
 
-#include &lt;ESP8266WiFi.h&gt;
-#include &lt;ESP8266WiFiMulti.h&gt;
+<span class="ot">#include &lt;ESP8266WiFi.h&gt;</span>
+<span class="ot">#include &lt;ESP8266WiFiMulti.h&gt;</span>
 
-#include &lt;ESP8266HTTPClient.h&gt;
+<span class="ot">#include &lt;ESP8266HTTPClient.h&gt;</span>
 
-#define USE_SERIAL Serial
+<span class="ot">#define USE_SERIAL Serial</span>
 
 ESP8266WiFiMulti WiFiMulti;
 
-void setup() {
+<span class="dt">void</span> setup() {
 
-    USE_SERIAL.begin(115200);
-   // USE_SERIAL.setDebugOutput(true);
+    USE_SERIAL.begin(<span class="dv">115200</span>);
+   <span class="co">// USE_SERIAL.setDebugOutput(true);</span>
 
     USE_SERIAL.println();
     USE_SERIAL.println();
     USE_SERIAL.println();
 
-    for(uint8_t t = 4; t &gt; 0; t--) {
-        USE_SERIAL.printf(&quot;[SETUP] WAIT %d...\n&quot;, t);
+    <span class="kw">for</span>(<span class="dt">uint8_t</span> t = <span class="dv">4</span>; t &gt; <span class="dv">0</span>; t--) {
+        USE_SERIAL.printf(<span class="st">&quot;[SETUP] WAIT %d...</span><span class="ch">\n</span><span class="st">&quot;</span>, t);
         USE_SERIAL.flush();
-        delay(1000);
+        delay(<span class="dv">1000</span>);
     }
 
-    WiFiMulti.addAP(&quot;SSID&quot;, &quot;PASSWORD&quot;);
+    WiFiMulti.addAP(<span class="st">&quot;SSID&quot;</span>, <span class="st">&quot;PASSWORD&quot;</span>);
 
 }
 
-void loop() {
-    // wait for WiFi connection
-    if((WiFiMulti.run() == WL_CONNECTED)) {
+<span class="dt">void</span> loop() {
+    <span class="co">// wait for WiFi connection</span>
+    <span class="kw">if</span>((WiFiMulti.run() == WL_CONNECTED)) {
 
         HTTPClient http;
 
-        USE_SERIAL.print(&quot;[HTTP] begin...\n&quot;);
-        // configure traged server and url
-        //http.begin(&quot;https://192.168.1.12/test.html&quot;, &quot;7a 9c f4 db 40 d3 62 5a 6e 21 bc 5c cc 66 c8 3e a1 45 59 38&quot;); //HTTPS
-        http.begin(&quot;http://192.168.1.12/test.html&quot;); //HTTP
+        USE_SERIAL.print(<span class="st">&quot;[HTTP] begin...</span><span class="ch">\n</span><span class="st">&quot;</span>);
+        <span class="co">// configure traged server and url</span>
+        <span class="co">//http.begin(&quot;https://192.168.1.12/test.html&quot;, &quot;7a 9c f4 db 40 d3 62 5a 6e 21 bc 5c cc 66 c8 3e a1 45 59 38&quot;); //HTTPS</span>
+        http.begin(<span class="st">&quot;http://192.168.1.12/test.html&quot;</span>); <span class="co">//HTTP</span>
 
-        USE_SERIAL.print(&quot;[HTTP] GET...\n&quot;);
-        // start connection and send HTTP header
-        int httpCode = http.GET();
+        USE_SERIAL.print(<span class="st">&quot;[HTTP] GET...</span><span class="ch">\n</span><span class="st">&quot;</span>);
+        <span class="co">// start connection and send HTTP header</span>
+        <span class="dt">int</span> httpCode = http.GET();
 
-        // httpCode will be negative on error
-        if(httpCode &gt; 0) {
-            // HTTP header has been send and Server response header has been handled
-            USE_SERIAL.printf(&quot;[HTTP] GET... code: %d\n&quot;, httpCode);
+        <span class="co">// httpCode will be negative on error</span>
+        <span class="kw">if</span>(httpCode &gt; <span class="dv">0</span>) {
+            <span class="co">// HTTP header has been send and Server response header has been handled</span>
+            USE_SERIAL.printf(<span class="st">&quot;[HTTP] GET... code: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, httpCode);
 
-            // file found at server
-            if(httpCode == HTTP_CODE_OK) {
+            <span class="co">// file found at server</span>
+            <span class="kw">if</span>(httpCode == HTTP_CODE_OK) {
                 String payload = http.getString();
                 USE_SERIAL.println(payload);
             }
-        } else {
-            USE_SERIAL.printf(&quot;[HTTP] GET... failed, error: %s\n&quot;, http.errorToString(httpCode).c_str());
+        } <span class="kw">else</span> {
+            USE_SERIAL.printf(<span class="st">&quot;[HTTP] GET... failed, error: %s</span><span class="ch">\n</span><span class="st">&quot;</span>, http.errorToString(httpCode).c_str());
         }
 
         http.end();
     }
 
-    delay(10000);
-}</code></pre>
+    delay(<span class="dv">10000</span>);
+}</code></pre></div>
 <h3 id="上传">上传</h3>
 <h1 id="esp8266-mqtt-控制">ESP8266 MQTT 控制</h1>
 <h3 id="mqtt">MQTT</h3>
@@ -455,42 +484,42 @@ void loop() {
 <p><a href="https://github.com/tuanpmt/esp_mqtt" class="uri">https://github.com/tuanpmt/esp_mqtt</a></p>
 <h1 id="esp8266-http-服务器">ESP8266 HTTP 服务器</h1>
 <h3 id="simple-http-server">Simple HTTP Server</h3>
-<pre><code>#include &lt;ESP8266WiFi.h&gt;
-#include &lt;ESP8266WebServer.h&gt;
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="ot">#include &lt;ESP8266WiFi.h&gt;</span>
+<span class="ot">#include &lt;ESP8266WebServer.h&gt;</span>
  
-ESP8266WebServer server(80);
+ESP8266WebServer server(<span class="dv">80</span>);
  
-void setup() {
+<span class="dt">void</span> setup() {
  
-  Serial.begin(115200);
-  WiFi.begin(&quot;Network name&quot;, &quot;Password&quot;);  //Connect to the WiFi network
+  Serial.begin(<span class="dv">115200</span>);
+  WiFi.begin(<span class="st">&quot;Network name&quot;</span>, <span class="st">&quot;Password&quot;</span>);  <span class="co">//Connect to the WiFi network</span>
  
-  while (WiFi.status() != WL_CONNECTED) {  //Wait for connection
-    delay(500);
-    Serial.println(&quot;Waiting to connect…&quot;);
+  <span class="kw">while</span> (WiFi.status() != WL_CONNECTED) {  <span class="co">//Wait for connection</span>
+    delay(<span class="dv">500</span>);
+    Serial.println(<span class="st">&quot;Waiting to connect…&quot;</span>);
   }
  
-  Serial.print(&quot;IP address: &quot;);
-  Serial.println(WiFi.localIP());  //Print the local IP
+  Serial.print(<span class="st">&quot;IP address: &quot;</span>);
+  Serial.println(WiFi.localIP());  <span class="co">//Print the local IP</span>
  
-  server.on(&quot; / other&quot;, []() {   //Define the handling function for the path
+  server.on(<span class="st">&quot; / other&quot;</span>, []() {   <span class="co">//Define the handling function for the path</span>
  
-    server.send(200, &quot;text / plain&quot;, &quot;Other URL&quot;);
+    server.send(<span class="dv">200</span>, <span class="st">&quot;text / plain&quot;</span>, <span class="st">&quot;Other URL&quot;</span>);
  
   });
  
-  server.on(&quot; / &quot;, handleRootPath);    //Associate the handler function to the path
-  server.begin();                                       //Start the server
-  Serial.println(&quot;Server listening&quot;);
+  server.on(<span class="st">&quot; / &quot;</span>, handleRootPath);    <span class="co">//Associate the handler function to the path</span>
+  server.begin();                                       <span class="co">//Start the server</span>
+  Serial.println(<span class="st">&quot;Server listening&quot;</span>);
 }
  
-void loop() {
+<span class="dt">void</span> loop() {
   server.handleClient();
 }
  
-void handleRootPath() {
-  server.send(200, &quot;text/plain&quot;, &quot;Hello world&quot;); 
-}</code></pre>
+<span class="dt">void</span> handleRootPath() {
+  server.send(<span class="dv">200</span>, <span class="st">&quot;text/plain&quot;</span>, <span class="st">&quot;Hello world&quot;</span>); 
+}</code></pre></div>
 <h1 id="超越-esp8266">超越 ESP8266</h1>
 <h1 id="第三部分-raspberry-pi">第三部分 Raspberry Pi</h1>
 <ul>
@@ -540,9 +569,5 @@ void handleRootPath() {
 <li id="fn2"><p>源自维基百科，https://zh.wikipedia.org/wiki/Arduino<a href="#fnref2">↩</a></p></li>
 </ol>
 </section>
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>
