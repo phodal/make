@@ -223,6 +223,34 @@ GOAL
 
 SMART 原则 
 
+仍然采用的是官方的示例：
+
+![Arduino 控制 LED 示例](./images/arduino/fritzing-button.png)
+
+官方示例（[Digital Read Serial](https://www.arduino.cc/en/Tutorial/DigitalReadSerial)）代码：
+
+```c
+// digital pin 2 has a pushbutton attached to it. Give it a name:
+int pushButton = 2;
+
+// the setup routine runs once when you press reset:
+void setup() {
+  // initialize serial communication at 9600 bits per second:
+  Serial.begin(9600);
+  // make the pushbutton's pin an input:
+  pinMode(pushButton, INPUT);
+}
+
+// the loop routine runs over and over again forever:
+void loop() {
+  // read the input pin:
+  int buttonState = digitalRead(pushButton);
+  // print out the state of the button:
+  Serial.println(buttonState);
+  delay(1);        // delay in between reads for stability
+}
+```
+
 ### 电路图
 
 使用 Fritzing 画板时

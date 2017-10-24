@@ -314,6 +314,30 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2 id="输入控制输出">输入控制输出</h2>
 <p>GOAL</p>
 <p>SMART 原则</p>
+<p>仍然采用的是官方的示例：</p>
+<figure>
+<img src="./images/arduino/fritzing-button.png" alt="Arduino 控制 LED 示例" /><figcaption>Arduino 控制 LED 示例</figcaption>
+</figure>
+<p>官方示例（<a href="https://www.arduino.cc/en/Tutorial/DigitalReadSerial">Digital Read Serial</a>）代码：</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="co">// digital pin 2 has a pushbutton attached to it. Give it a name:</span>
+<span class="dt">int</span> pushButton = <span class="dv">2</span>;
+
+<span class="co">// the setup routine runs once when you press reset:</span>
+<span class="dt">void</span> setup() {
+  <span class="co">// initialize serial communication at 9600 bits per second:</span>
+  Serial.begin(<span class="dv">9600</span>);
+  <span class="co">// make the pushbutton&#39;s pin an input:</span>
+  pinMode(pushButton, INPUT);
+}
+
+<span class="co">// the loop routine runs over and over again forever:</span>
+<span class="dt">void</span> loop() {
+  <span class="co">// read the input pin:</span>
+  <span class="dt">int</span> buttonState = digitalRead(pushButton);
+  <span class="co">// print out the state of the button:</span>
+  Serial.println(buttonState);
+  delay(<span class="dv">1</span>);        <span class="co">// delay in between reads for stability</span>
+}</code></pre></div>
 <h3 id="电路图">电路图</h3>
 <p>使用 Fritzing 画板时</p>
 <figure>
