@@ -379,7 +379,7 @@ pre, code, pre tt {
 }
 
 pre {
-  background: #f8f8f8;
+  background: #000;
   border: 1px solid #ddd;
   padding: 1em 1.5em;
   display: block;
