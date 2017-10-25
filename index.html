@@ -304,6 +304,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>对于非官方的开发板来说，则需要开发者自己手动通过『开发板管理器』来安装，如 ESP8266 开发板。</p>
 <h2 id="hello-world">hello, world</h2>
 <p>与桌面端使用 print、puts、console.log 来输出 Hello, world 不同的是，点亮一个 LED 是 电子世界的 Hello, world。</p>
+<p>在硬件世界里，没有 stdlib.h 这样的库，对于多数嵌入式系统来说，也没有屏幕。在这个时候，想要知道设备的状态，最简单的方式就是 LED。常见的，如路由器、电视等家电电器上的灯，都是嵌入式设备的状态。</p>
 <p>官方的 Blink 示例如下：</p>
 <div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">void</span> setup() {
   <span class="co">// initialize digital pin LED_BUILTIN as an output.</span>
@@ -420,9 +421,65 @@ NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE); <span class="co">// NewPing 
 <h1 id="arduino-5110-显示">Arduino 5110 显示</h1>
 <h2 id="lcd">LCD</h2>
 <h2 id="安装库">安装库</h2>
+<p>项目地址：<a href="https://github.com/adafruit/Adafruit-PCD8544-Nokia-5110-LCD-library">Adafruit PCD8544</a></p>
+<figure>
+<img src="./images/arduino/manage-library.png" alt="添加库" /><figcaption>添加库</figcaption>
+</figure>
 <figure>
 <img src="./images/arduino/arduino-nokia-5110.png" alt="Arduino IDE 安装 5110" /><figcaption>Arduino IDE 安装 5110</figcaption>
 </figure>
+<p>一般来说，在安装完库后，都会有对应的示例。但是，这里的示例，稍微有一些复杂。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="ot">#include &lt;Arduino.h&gt;</span>
+
+<span class="ot">#include &lt;SPI.h&gt;</span>
+<span class="ot">#include &lt;Adafruit_GFX.h&gt;</span>
+<span class="ot">#include &lt;Adafruit_PCD8544.h&gt;</span>
+
+<span class="co">// Pins</span>
+<span class="dt">const</span> <span class="dt">int8_t</span> RST_PIN = D2;
+<span class="dt">const</span> <span class="dt">int8_t</span> CE_PIN = D1;
+<span class="dt">const</span> <span class="dt">int8_t</span> DC_PIN = D6;
+<span class="co">//const int8_t DIN_PIN = D7;  // Uncomment for Software SPI</span>
+<span class="co">//const int8_t CLK_PIN = D5;  // Uncomment for Software SPI</span>
+<span class="dt">const</span> <span class="dt">int8_t</span> BL_PIN = D0;
+
+
+<span class="co">// Software SPI with explicit CE pin.</span>
+<span class="co">// Adafruit_PCD8544 display = Adafruit_PCD8544(CLK_PIN, DIN_PIN, DC_PIN, CE_PIN, RST_PIN);</span>
+
+<span class="co">// Software SPI with CE tied to ground. Saves a pin but other pins can&#39;t be shared with other hardware.</span>
+<span class="co">// Adafruit_PCD8544(int8_t CLK_PIN, int8_t DIN_PIN, int8_t DC_PIN, int8_t RST_PIN);</span>
+
+<span class="co">// Hardware SPI based on hardware controlled SCK (SCLK) and MOSI (DIN) pins. CE is still controlled by any IO pin.</span>
+<span class="co">// NOTE: MISO and SS will be set as an input and output respectively, so be careful sharing those pins!</span>
+Adafruit_PCD8544 display = Adafruit_PCD8544(DC_PIN, CE_PIN, RST_PIN);
+
+<span class="dt">void</span> setup() {
+  Serial.begin(<span class="dv">9600</span>);
+  Serial.println(<span class="st">&quot;</span><span class="ch">\n\n</span><span class="st">WeMos D1 Mini + Nokia 5110 PCD8544 84x48 Monochrome LCD</span><span class="ch">\n</span><span class="st">Using Adafruit_PCD8544 and Adafruit_GFX libraries</span><span class="ch">\n</span><span class="st">&quot;</span>);
+
+  <span class="co">// Turn LCD backlight on</span>
+  pinMode(BL_PIN, OUTPUT);
+  digitalWrite(BL_PIN, HIGH);
+
+  display.begin();
+  display.setContrast(<span class="dv">60</span>);  <span class="co">// Adjust for your display</span>
+  Serial.println(<span class="st">&quot;Show Adafruit logo bitmap&quot;</span>);
+
+  <span class="co">// Show the Adafruit logo, which is preloaded into the buffer by their library</span>
+  <span class="co">// display.clearDisplay();</span>
+  delay(<span class="dv">2000</span>);
+
+  display.clearDisplay();
+  display.setTextSize(<span class="dv">1</span>);
+  display.setTextColor(BLACK);
+  display.setCursor(<span class="dv">0</span>,<span class="dv">0</span>);
+  display.println(<span class="st">&quot;Hello, world!&quot;</span>);
+  display.display();
+}
+
+<span class="dt">void</span> loop() {
+}</code></pre></div>
 <h2 id="输出-hello-world">输出 hello, world</h2>
 <h1 id="arduino-processing">Arduino Processing</h1>
 <h2 id="串口输出">串口输出</h2>

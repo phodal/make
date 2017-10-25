@@ -23,6 +23,8 @@ hello, world
 
 与桌面端使用 print、puts、console.log 来输出 Hello, world 不同的是，点亮一个 LED 是 电子世界的 Hello, world。
 
+在硬件世界里，没有 stdlib.h 这样的库，对于多数嵌入式系统来说，也没有屏幕。在这个时候，想要知道设备的状态，最简单的方式就是 LED。常见的，如路由器、电视等家电电器上的灯，都是嵌入式设备的状态。
+
 
 官方的 Blink 示例如下：
 
