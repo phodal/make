@@ -280,7 +280,7 @@ Arduino 传感器控制
 
 
 
-Arduino 5100 显示
+Arduino 5110 显示
 ===
 
 LCD
@@ -288,6 +288,8 @@ LCD
 
 安装库
 ---
+
+![Arduino IDE 安装  5110](./images/arduino/arduino-nokia-5110.png)
 
 输出 hello, world
 ---
