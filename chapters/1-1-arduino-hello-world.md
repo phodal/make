@@ -1,6 +1,8 @@
 Arduino Hello, World
 ===
 
+幸运的是，今天对硬件编程已经有了更多的方式，可以使用更高级的语言。除了在 Arduion 上使用 Processing 语言（可以视为 C）进行编程，还可以使用 JavaScript 等语言。我们会在后面的介绍：如何使用这些高级的语言来编程。
+
 开发板选择
 ---
 
@@ -10,10 +12,11 @@ Arduino Hello, World
 
 Arduino IDE 默认会安装相应环境的包，如果你的开发板不在这些环境里，如你使用的是 Arduino M0 开发板。那么，系统可能会检测出来，并自动为你安装相应的环境，如下图所示。
 
-![](./images/arduino/arduino-install-package.png)
+![Arduino IDE 安装 Arduino M0 环境](./images/arduino/arduino-install-package.png)
 
-对于非官方的开发板来说，则需要开发者自己手动通过『开发板管理器』来安装。
+``注意``：安装过程中会下载一系列的工具，在这个过程里，可能会遇到一些“网络问题”。请尝试更换网络，或直到到“墙”的那外一边。
 
+对于非官方的开发板来说，则需要开发者自己手动通过『开发板管理器』来安装，如 ESP8266 开发板。
 
 hello, world
 ---
@@ -38,6 +41,19 @@ void loop() {
 }
 ```
 
+接下来，要做的事情就比较简单了。从工具（ Tools ）中选择对应的开发板和端口，如下图所示：
+
+![Arduino 选择设备](./images/arduino/arduino-devices.png)
+
+我这里使用设置是 ``Arduino M0 Pro``，对应的端口是：``/dev/tty.usbmodem1412``。
+
+对于 Windows 用户来说，则是 COM 口——从设备管理器中找到对应的端口。
+
+然后点击菜单中的 -> 号，即上传（Upload，又可以称为烧录）。
+
+![Arduino 菜单](./images/arduino/arduino-menu.png)
+
+再看看你的 Arduion，就发现上面的 LED 正在闪烁——一秒开一秒关。
 
 ### setup()
 

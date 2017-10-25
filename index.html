@@ -288,6 +288,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Arduino 的可能性：+ Fritzing / Arduino + Johnny-Five</li>
 </ul>
 <h1 id="arduino-hello-world">Arduino Hello, World</h1>
+<p>幸运的是，今天对硬件编程已经有了更多的方式，可以使用更高级的语言。除了在 Arduion 上使用 Processing 语言（可以视为 C）进行编程，还可以使用 JavaScript 等语言。我们会在后面的介绍：如何使用这些高级的语言来编程。</p>
 <h2 id="开发板选择">开发板选择</h2>
 <figure>
 <img src="./images/arduino/arduinos.jpg" alt="Arduino 开发板示例" /><figcaption>Arduino 开发板示例</figcaption>
@@ -297,9 +298,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </figure>
 <p>Arduino IDE 默认会安装相应环境的包，如果你的开发板不在这些环境里，如你使用的是 Arduino M0 开发板。那么，系统可能会检测出来，并自动为你安装相应的环境，如下图所示。</p>
 <figure>
-<img src="./images/arduino/arduino-install-package.png" />
+<img src="./images/arduino/arduino-install-package.png" alt="Arduino IDE 安装 Arduino M0 环境" /><figcaption>Arduino IDE 安装 Arduino M0 环境</figcaption>
 </figure>
-<p>对于非官方的开发板来说，则需要开发者自己手动通过『开发板管理器』来安装。</p>
+<p><code>注意</code>：安装过程中会下载一系列的工具，在这个过程里，可能会遇到一些“网络问题”。请尝试更换网络，或直到到“墙”的那外一边。</p>
+<p>对于非官方的开发板来说，则需要开发者自己手动通过『开发板管理器』来安装，如 ESP8266 开发板。</p>
 <h2 id="hello-world">hello, world</h2>
 <p>与桌面端使用 print、puts、console.log 来输出 Hello, world 不同的是，点亮一个 LED 是 电子世界的 Hello, world。</p>
 <p>官方的 Blink 示例如下：</p>
@@ -315,6 +317,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   digitalWrite(LED_BUILTIN, LOW);    <span class="co">// turn the LED off by making the voltage LOW</span>
   delay(<span class="dv">1000</span>);                       <span class="co">// wait for a second</span>
 }</code></pre></div>
+<p>接下来，要做的事情就比较简单了。从工具（ Tools ）中选择对应的开发板和端口，如下图所示：</p>
+<figure>
+<img src="./images/arduino/arduino-devices.png" alt="Arduino 选择设备" /><figcaption>Arduino 选择设备</figcaption>
+</figure>
+<p>我这里使用设置是 <code>Arduino M0 Pro</code>，对应的端口是：<code>/dev/tty.usbmodem1412</code>。</p>
+<p>对于 Windows 用户来说，则是 COM 口——从设备管理器中找到对应的端口。</p>
+<p>然后点击菜单中的 -&gt; 号，即上传（Upload，又可以称为烧录）。</p>
+<figure>
+<img src="./images/arduino/arduino-menu.png" alt="Arduino 菜单" /><figcaption>Arduino 菜单</figcaption>
+</figure>
+<p>再看看你的 Arduion，就发现上面的 LED 正在闪烁——一秒开一秒关。</p>
 <h3 id="setup">setup()</h3>
 <p>源码中的：</p>
 <div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">int</span> main(<span class="dt">void</span>)
@@ -365,8 +378,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </figure>
 <h1 id="arduino-传感器控制">Arduino 传感器控制</h1>
 <h2 id="传感器入门">传感器入门</h2>
+<blockquote>
+<p>传感器是一种物理装置或生物器官，能够探测、感受外界的信号、物理条件（如光、热、湿度）或化学组成（如烟雾），并将探知的信息传递给其他装置或器官。“传感器”在新韦式大词典中定义为：“从一个系统接受功率，通常以另一种形式将功率送到第二个系统中的器件”。根据这个定义，传感器的作用是将一种能量转换成另一种能量形式，所以不少学者也用“换能器－Transducer”来称谓“传感器－Sensor”。[^wiki_sensor]</p>
+</blockquote>
+<p>[^wiki_sensor] : https://zh.wikipedia.org/wiki/%E4%BC%A0%E6%84%9F%E5%99%A8</p>
 <h3 id="模拟元件与数字元件">模拟元件与数字元件</h3>
 <h2 id="超声波传感器">超声波传感器</h2>
+<figure>
+<img src="./images/arduino/arduino-hs-sr04.png" alt="Arduion 超声波传感器连线图" /><figcaption>Arduion 超声波传感器连线图</figcaption>
+</figure>
 <h2 id="控制继电器">控制继电器</h2>
 <h1 id="arduino-5110-显示">Arduino 5110 显示</h1>
 <h2 id="lcd">LCD</h2>
