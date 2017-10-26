@@ -8,3 +8,6 @@ I don't know
 
 网络
 ---
+
+![Arduion 以太网扩展板](./images/arduino/arduino-ethernet.png)
+
